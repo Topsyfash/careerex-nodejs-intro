@@ -44,6 +44,12 @@ app.post("/drugs/by-category", (req, res) => {
   res.json(filtereddrugCategory);
 });
 
+// Question 3 with get request
+app.get("/drugs/by-category", (req, res) => {
+  const category = req.query.category
+  res.json(drugs.filter(drug => drug.category === category));
+})
+
 //Question 4 - GET drugs names and their manufacturer
 app.get("/drugs/names-manufacturers", (req, res) => {
   const drugNameAndManufacturer = drugs.map((drug) => {
@@ -101,8 +107,15 @@ app.post("/drugs/manufacturer-count", (req, res) => {
     return drug.manufacturer === manufacturer;
   });
 
-  res.send(manufacturerCount.length);
+  res.json(manufacturerCount.length);
 });
+
+// QUestion 9 with GET request
+app.get("/drugs/manufacturer-count", (req, res) => {
+  const manufacturer = req.query.manufacturer
+
+  res.json(drugs.filter(drug => drug.manufacturer === manufacturer).length);
+})
 
 // Question 10 - GET number of analgesics drugs
 app.get("/drugs/count-analgesics", (req, res) => {
