@@ -12,6 +12,12 @@ app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
 
+
+// test API
+app.get("/", (req, res) => {
+  res.send({ "message": "Welcome to Drugs Server" })
+})
+
 // Question 1 - GET all drugs that are antibiotics
 app.get("/drugs/antibiotics", (req, res) => {
   const antibiotics = drugs.filter((drug) => {
